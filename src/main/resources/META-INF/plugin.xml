@@ -1,18 +1,21 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.nkarasovd.mlinideplugin</id>
-    <name>ML_in_IDE_Plugin</name>
-    <vendor>nkarasovd</vendor>
-
+    <id>org.intellij.sdk.intention</id>
+    <name>SDK: Conditional Operator Converter</name>
+    <depends>com.intellij.java</depends>
     <depends>com.intellij.modules.platform</depends>
-
+    <vendor url="https://plugins.jetbrains.com">IntelliJ Platform SDK</vendor>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.nkarasovd.mlinideplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.nkarasovd.mlinideplugin.services.MyProjectService"/>
+        <applicationService serviceInterface="org.intellij.sdk.intention.services.ClientSuggestingService"
+                            serviceImplementation="org.intellij.sdk.intention.services.impl.ClientSuggestingServiceImpl"/>
+        <renameHandler implementation="org.intellij.sdk.intention.rename.ClientVariableInplaceRenameHandler"/>
+        <renameHandler implementation="org.intellij.sdk.intention.rename.ClientMemberInplaceRenameHandler"/>
     </extensions>
-
     <applicationListeners>
-        <listener class="com.github.nkarasovd.mlinideplugin.listeners.MyProjectManagerListener"
+        <listener class="org.intellij.sdk.intention.application.ProjectOpenCloseListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+    <applicationListeners>
+        <listener class="org.intellij.sdk.intention.application.PluginLoadedListener"
+                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
     </applicationListeners>
 </idea-plugin>
