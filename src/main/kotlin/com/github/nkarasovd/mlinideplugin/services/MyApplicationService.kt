@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.nkarasovd.mlinideplugin.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.nkarasovd.mlinideplugin.MyBundle
 
 class MyApplicationService {
 
